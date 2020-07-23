@@ -1,7 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+
+import { BrowserRouter as Router, Route,} from "react-router-dom";
+import React, { useState } from "react";
+import "./App.css";
+
+/* Components */
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import NavBar from "./components/NavBar";
+import Register from "./components/Register";
+
+
+
 
 function App() {
   return (
