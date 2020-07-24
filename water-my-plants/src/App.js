@@ -7,8 +7,9 @@ import AddPlant from './Components/AddPlant'
 function App() {
   return (
     <div className="App">
-      <Route exact path='/' component={PlantList} />
+      <Route exact path='/plantlist' component={PlantList} />
       <Route path='/add' component={AddPlant} />
+      <PlantList />
     </div>
   );
 }
