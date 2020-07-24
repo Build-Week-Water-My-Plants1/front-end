@@ -5,17 +5,11 @@ function AddPlant() {
     const defaultState = {
         plantName: '',
         plantSpecies: '',
-        Sun: false,
-        Mon: false,
-        Tue: false,
-        Wed: false,
-        Thu: false,
-        Fri: false,
-        Sat: false,
+        weekly: days,
         intervalNum: '',
         startDate: '',
     }
-    const [addPlant, setAddPlant] = useState(defaultState);
+    const [plant, setPlant] = useState(defaultState);
 
     function inputText(labelFor, 
                        labelText,
@@ -52,12 +46,11 @@ function AddPlant() {
     const handleChange = event => {
         const targetValue =
         event.target.type === 'checkbox' ? event.target.checked : event.target.value;
-        console.log(event.target.value);
-        setAddPlant({
-            ...addPlant,
+        setPlant({
+            ...plant,
             [event.target.name]: targetValue
         });
-        console.log(event);
+        console.log(plant);
     }
 
     return(
@@ -68,23 +61,23 @@ function AddPlant() {
                            'Plant Nickname: ',
                            'text',
                            'plantName', 
-                           addPlant.plantName,
-                           handleChange
+                           plant.plantName,
+                           handleChange,
                            )}
                 {inputText('plantSpecies',
                            'Plant Species: ',
                            'text',
                            'plantSpecies', 
-                           addPlant.plantSpecies,
+                           plant.plantSpecies,
                            handleChange
                            )}
                 <p>Watering Frequency</p>
                 <p>Weekly: </p>
                 {days.map((day, i) => (
-                    inputSelect(i, day, day, 'checkbox', 'dayOfWeek', addPlant[day], handleChange, addPlant[day])
+                    inputSelect(i, day, day, 'checkbox', day, plant.weekly, handleChange, plant.weekly[day])
                 ))}
-                {inputText('intervalNum', 'Every ', 'number', 'intervalNum', addPlant.intervalNum, handleChange)} days
-                {inputText('startDate', 'Start Date ', 'date', 'startDate', addPlant.startDate, handleChange)}
+                {inputText('intervalNum', 'Every ', 'number', 'intervalNum', plant.intervalNum, handleChange)} days
+                {inputText('startDate', 'Start Date ', 'date', 'startDate', plant.startDate, handleChange)}
                 <button type='submit'>Submit</button>
             </form>
         </div>
