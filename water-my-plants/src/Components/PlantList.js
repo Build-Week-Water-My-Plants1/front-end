@@ -1,11 +1,13 @@
 import React from  'react';
-import AddPlant from './AddPlant';
+import {Link} from 'react-router-dom';
 
 function PlantList() {
     return(
         <div>
             <p>plant list</p>
-            <AddPlant />
+            <Link to={`/add`}>
+                add plant
+            </Link>
         </div>
     )
 }
