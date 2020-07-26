@@ -5,10 +5,9 @@ import axios from "axios";
 import "./App.css";
 
 /* Components */
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-import NavBar from "./components/NavBar";
-import Register from "./components/Register";
+import Login from "water-my-plants/components/Login";
+import Registration from "water-my-plants/components/Register";
+import Home from "water-my-plants/components/Home";
 
 
 /*log in state */
