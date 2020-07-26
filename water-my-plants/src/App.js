@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <Route path='/plantlist' component={PlantList} />
       <Route path='/add' component={AddPlant} />
-      <PlantList />
     </div>
   );
 }

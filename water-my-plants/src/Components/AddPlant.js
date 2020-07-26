@@ -6,8 +6,8 @@ function AddPlant() {
     const defaultState = {
         plantName: '',
         plantSpecies: '',
-        weekly: days,
-        intervalNum: '',
+        weekly: '',
+        intervalNum: 0,
         startDate: '',
     }
     
@@ -31,34 +31,11 @@ function AddPlant() {
                       errors={errors} />
         </label>
     }
-    function inputSelect(key,
-                       labelFor, 
-                       labelText,
-                       type, 
-                       name, 
-                       value,
-                       onChange,
-                       checked) {
-        return <label key={key} htmlFor={labelFor}>
-               {labelText}
-               <input type={type} 
-                      name={name} 
-                      value={value}
-                      onChange={onChange} 
-                      checked={checked} />
-        </label>
-    }
 
     let formSchema = yup.object().shape({
         plantName: yup.string().required('Please give your plant a nickname'),
         plantSpecies: yup.string().required('We need to know the type of plant'),
-        Sun: yup.bool(),
-        Mon: yup.bool(),
-        Tue: yup.bool(),
-        Wed: yup.bool(),
-        Thu: yup.bool(),
-        Fri: yup.bool(),
-        Sat: yup.bool(),
+        weekly: yup.string(),
         intervalNum: yup.number().notRequired(),
         startDate: yup.date().required('When would you like to start?'),
     })
@@ -125,9 +102,14 @@ function AddPlant() {
                            )}
                 <p>Watering Frequency</p>
                 <p>Weekly: </p>
-                {days.map((day, i) => (
-                    inputSelect(i, day, day, 'checkbox', day, plant.weekly[day], handleChange, plant.weekly[day])
-                ))}
+                <label htmlFor='weekly'>
+                    <select name='weekly' onChange={handleChange} value={plant.weekly}>
+                        <option value=''> Choose a day:</option>
+                        {days.map((day, i) => 
+                            <option value={day} key={i}>{day}</option>
+                        )}
+                    </select>
+                </label>
                 {inputText('intervalNum', 'Every ', 'number', 'intervalNum', plant.intervalNum, handleChange, errors)} days
                 {inputText('startDate', 'Start Date ', 'date', 'startDate', plant.startDate, handleChange, errors)}
                 <button type='submit' disabled={disableButton}>Submit</button>
