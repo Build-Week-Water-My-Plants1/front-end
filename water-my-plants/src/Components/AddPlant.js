@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
+import { Button, ModalFooter } from 'reactstrap';
 
-function AddPlant() {
+function AddPlant(props) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const defaultState = {
         plantName: '',
@@ -36,7 +37,7 @@ function AddPlant() {
         plantName: yup.string().required('Please give your plant a nickname'),
         plantSpecies: yup.string().required('We need to know the type of plant'),
         weekly: yup.string(),
-        intervalNum: yup.number().notRequired(),
+        intervalNum: yup.number(),
         startDate: yup.date().required('When would you like to start?'),
     })
 
@@ -117,7 +118,10 @@ function AddPlant() {
                 <br />
                 {inputText('startDate', 'Start Date ', 'date', 'startDate', plant.startDate, handleChange, errors)}
                 {errors.startDate.length > 0 ? <p>{errors.startDate}</p> : ''}
-                <button type='submit' disabled={disableButton}>Submit</button>
+        <ModalFooter>
+          <Button color="primary" type='submit' disabled={disableButton} onClick={props.toggle}>Do Something</Button>{' '}
+          <Button color="secondary" onClick={props.toggle}>Cancel</Button>
+        </ModalFooter>
             </form>
         </div>
     )
