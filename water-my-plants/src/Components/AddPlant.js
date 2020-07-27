@@ -92,6 +92,7 @@ function AddPlant() {
                            handleChange,
                            errors
                            )}
+                {errors.plantName.length > 0 ? <p>{errors.plantName}</p> : ''}
                 {inputText('plantSpecies',
                            'Plant Species: ',
                            'text',
@@ -100,8 +101,9 @@ function AddPlant() {
                            handleChange,
                            errors
                            )}
+                {errors.plantSpecies.length > 0 ? <p>{errors.plantSpecies}</p> : ''}
                 <p>Watering Frequency</p>
-                <p>Weekly: </p>
+                {'Weekly: '}
                 <label htmlFor='weekly'>
                     <select name='weekly' onChange={handleChange} value={plant.weekly}>
                         <option value=''> Choose a day:</option>
@@ -110,8 +112,11 @@ function AddPlant() {
                         )}
                     </select>
                 </label>
+                <br />
                 {inputText('intervalNum', 'Every ', 'number', 'intervalNum', plant.intervalNum, handleChange, errors)} days
+                <br />
                 {inputText('startDate', 'Start Date ', 'date', 'startDate', plant.startDate, handleChange, errors)}
+                {errors.startDate.length > 0 ? <p>{errors.startDate}</p> : ''}
                 <button type='submit' disabled={disableButton}>Submit</button>
             </form>
         </div>
