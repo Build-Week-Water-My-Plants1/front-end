@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import Registration from "./Registration";
+import Registration from "./Registration"; 
 import Login from "./Login";
 
 
