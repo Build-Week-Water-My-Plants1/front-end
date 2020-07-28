@@ -14,16 +14,16 @@ function PlantList() {
     return(
         <div>
             <p>plant list</p>
-            <ModalExample buttonLabel='click' />
+            <ModalExample buttonLabel='Add a Plant' />
                 <CardColumns>
-            {dataHere.map((plant, i) => (
-                    <Card key={i}>
+                 {dataHere.map((plant, i) => (
+                    <Card key={i} onClick={() => console.log(plant.plantName)}>
                         <CardImg top width = '100%' src={img} alt='placeholder image' />
                         <CardBody>
                             <CardTitle>{plant.plantName}</CardTitle>
                             <CardSubtitle>{plant.plantSpecies}</CardSubtitle>
                             {plant.weekly !== '' ? <CardText>{plant.weekly}</CardText> : <CardText>{plant.intervalNum}</CardText>}
-                            <Button>Button</Button>
+                            <Button>Edit Plant</Button>
                         </CardBody>
                     </Card>
             ))}

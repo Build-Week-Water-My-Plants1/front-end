@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
 import { Button, ModalFooter } from 'reactstrap';
-import PlantForm from './PlantForm';
+import AddPlant from './AddPlant'
 
-function AddPlant(props) {
+function PlantForm(props, addPlantProps) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const defaultState = {
         plantName: '',
@@ -85,9 +85,47 @@ function AddPlant(props) {
     return(
         <div>
             <p>Add A Plant</p>
-            <PlantForm addPlantProps />
+            <form onSubmit={handleSubmit}>
+                {inputText('plantName',
+                           'Plant Nickname: ',
+                           'text',
+                           'plantName', 
+                           addPlantProps.plantName,
+                           handleChange,
+                           addPlantProps.errors
+                           )}
+                {errors.plantName.length > 0 ? <p>{errors.plantName}</p> : ''}
+                {inputText('plantSpecies',
+                           'Plant Species: ',
+                           'text',
+                           'plantSpecies', 
+                           addPlantProps.plantSpecies,
+                           handleChange,
+                           addPlantProps.errors
+                           )}
+                {errors.plantSpecies.length > 0 ? <p>{errors.plantSpecies}</p> : ''}
+                <p>Watering Frequency</p>
+                {'Weekly: '}
+                <label htmlFor='weekly'>
+                    <select name='weekly' onChange={handleChange} value={addPlantProps.weekly}>
+                        <option value=''> Choose a day:</option>
+                        {days.map((day, i) => 
+                            <option value={day} key={i}>{day}</option>
+                        )}
+                    </select>
+                </label>
+                <br />
+                {inputText('intervalNum', 'Every ', 'number', 'intervalNum', addPlantProps.intervalNum, handleChange, errors)} days
+                <br />
+                {inputText('startDate', 'Start Date ', 'date', 'startDate', plant.startDate, handleChange, errors)}
+                {errors.startDate.length > 0 ? <p>{errors.startDate}</p> : ''}
+        <ModalFooter>
+          <Button color="primary" type='submit' disabled={disableButton} onClick={props.toggle}>Do Something</Button>{' '}
+          <Button color="secondary" onClick={props.toggle}>Cancel</Button>
+        </ModalFooter>
+            </form>
         </div>
     )
 }
 
-export default AddPlant;
+export default PlantForm;
