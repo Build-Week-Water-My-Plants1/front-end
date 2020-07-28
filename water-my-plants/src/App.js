@@ -1,17 +1,20 @@
 
 import React from 'react';
 import './App.css';
-
-import LoginState from "./Components/LoginState";
+import PlantList from './Components/PlantList';
+import {Route} from 'react-router-dom';
+import AddPlant from './Components/AddPlant'
 
 function App() {
   return (
     <div className="App">
+      <Route exact path='/' component={PlantList} />
+      <Route path='/add' component={AddPlant} />
     </div>
   );
 }
+
 export default App;
-        
       
     
 
