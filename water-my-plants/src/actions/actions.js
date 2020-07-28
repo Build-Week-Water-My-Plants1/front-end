@@ -4,24 +4,26 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 export const FETCHING_DATA_START = 'FETCHING_DATA_START';
 export const FETCHING_DATA_SUCCESS = 'FETCHING_DATA_SUCCESS';
 export const FETCHING_DATA_FAILURE = 'FETCHING_DATA_FAILURE';
+export const ADD_PLANT = 'ADD_PLANT';
+export const EDIT_PLANT = 'EDIT_PLANT';
 export const DELETE_PLANT = 'DELETE_PLANT';
 
 export const getPlants = ()=> dispatch =>{
     dispatch({type: FETCHING_DATA_START});
     axiosWithAuth()
         .get('/plantlist/')
-        .then(res =>{
+        .then(res => {
             console.log(res.data);
             dispatch({ type : FETCHING_DATA_SUCCESS, 
             payload: res.data});
-            })
-            .catch(err=>{;
+        })
+        .catch(err => {
             console.log(err);
             dispatch({
                 type: FETCHING_DATA_FAILURE,
-                payload: ''
+                payload: err
             });
-            });
+        });
         
 };
 
