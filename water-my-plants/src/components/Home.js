@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import Registration from "./auth/Registration";
-import Login from "./auth/Login";
+import Registration from "./Registration";
+import Login from "./Login";
+
 
 export default class Home extends Component {
   constructor(props) {
@@ -40,3 +41,4 @@ export default class Home extends Component {
     );
   }
 }
+
