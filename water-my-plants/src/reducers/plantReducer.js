@@ -8,11 +8,11 @@ import { DELETE_PLANT } from "../actions/actions";
 const initialState = {
     plants: [],
     isFetching: false,
-    fetchingError: "",
-    isPosting: false,
-    postingError: "",
-    isDeleting: false,
-    deletingError: ""
+    fetchingError: ""
+    // isPosting: false,
+    // postingError: "",
+    // isDeleting: false,
+    // deletingError: ""
 }
 
 export const plantsReducer = (state = initialState, action) => {
@@ -33,10 +33,25 @@ export const plantsReducer = (state = initialState, action) => {
                 fetchingError: action.payload
             }
         case ADD_PLANT:
-            return state;
+            return {
+                ...state,
+                plants: [...state.plants, action.payload]
+            };
         case EDIT_PLANT:
-            return state;
+            return {
+                ...state,
+                plants: state.plants.map(plant => {
+                    if(plant.id === action.payload.id){
+                        return action.payload;
+                    } else {
+                        return plant;
+                    }
+                })
+            };
         case DELETE_PLANT:
-            return state;
+            return {
+                ...state,
+                plants: state.plants.filter(plant => plant.id !== action.payload.id)
+            };
     }
 }
