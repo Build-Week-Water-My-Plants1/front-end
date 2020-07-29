@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AddPlant from './AddPlant'
+import PlantForm from './PlantForm';
 
 const ModalExample = (props) => {
   const {
@@ -17,9 +17,9 @@ const ModalExample = (props) => {
     <div>
       <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle}>{buttonLabel}</ModalHeader>
         <ModalBody>
-            <AddPlant toggle={toggle} />
+            <PlantForm toggle={toggle} plantId={props.plantId} />
         </ModalBody>
       </Modal>
     </div>

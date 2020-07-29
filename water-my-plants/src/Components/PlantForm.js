@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
 import { Button, ModalFooter } from 'reactstrap';
+import data from './data';
 
-function AddPlant(props) {
+function PlantForm(propsFromModal) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
     const defaultState = {
         plantName: '',
         plantSpecies: '',
@@ -13,6 +15,17 @@ function AddPlant(props) {
     }
     
     const [plant, setPlant] = useState(defaultState);
+    useEffect(() => {if(propsFromModal.plantId >= 0) {
+        const id = propsFromModal.plantId;
+        const editState = {
+            plantName: data[id].plantName,
+            plantSpecies: data[id].plantSpecies,
+            weekly: data[id].weekly,
+            intervalNum: data[id].intervalNum,
+            startDate: data[id].startDate,
+        }
+        setPlant(editState);
+    }}, [propsFromModal.plantId])
     const [errors, setErrors] = useState(defaultState);
     const [disableButton, setDisableButton] = useState(true);
 
@@ -58,7 +71,7 @@ function AddPlant(props) {
     
     useEffect(() => {
         formSchema.isValid(plant).then(valid => setDisableButton(!valid));
-    }, [formSchema, plant])
+        }, [formSchema, plant])
 
     const handleChange = event => {
         const targetValue =
@@ -77,13 +90,11 @@ function AddPlant(props) {
             ...plant,
             [event.target.name]: event.target.value
         });
-        console.log('submit plant', plant);
         setPlant(defaultState);
     }
 
     return(
         <div>
-            <p>Add A Plant</p>
             <form onSubmit={handleSubmit}>
                 {inputText('plantName',
                            'Plant Nickname: ',
@@ -91,7 +102,7 @@ function AddPlant(props) {
                            'plantName', 
                            plant.plantName,
                            handleChange,
-                           errors
+                           plant.errors
                            )}
                 {errors.plantName.length > 0 ? <p>{errors.plantName}</p> : ''}
                 {inputText('plantSpecies',
@@ -100,7 +111,7 @@ function AddPlant(props) {
                            'plantSpecies', 
                            plant.plantSpecies,
                            handleChange,
-                           errors
+                           plant.errors
                            )}
                 {errors.plantSpecies.length > 0 ? <p>{errors.plantSpecies}</p> : ''}
                 <p>Watering Frequency</p>
@@ -118,13 +129,13 @@ function AddPlant(props) {
                 <br />
                 {inputText('startDate', 'Start Date ', 'date', 'startDate', plant.startDate, handleChange, errors)}
                 {errors.startDate.length > 0 ? <p>{errors.startDate}</p> : ''}
-        <ModalFooter>
-          <Button color="primary" type='submit' disabled={disableButton} onClick={props.toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={props.toggle}>Cancel</Button>
-        </ModalFooter>
+                <ModalFooter>
+                    <Button color="primary" type='submit' disabled={disableButton} onClick={propsFromModal.toggle}>Submit</Button>{' '}
+                    <Button color="secondary" onClick={propsFromModal.toggle}>Cancel</Button>
+                </ModalFooter>
             </form>
         </div>
     )
 }
 
-export default AddPlant;
+export default PlantForm;
