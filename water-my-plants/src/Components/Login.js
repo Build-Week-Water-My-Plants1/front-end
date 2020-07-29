@@ -29,7 +29,7 @@ export default class Login extends Component {
 
       axios
         .post(
-          "https://water-my-plants1.herokuapp.com/api/auth/login", this.state,
+          'https://cors-anywhere.herokuapp.com/https://water-my-plants1.herokuapp.com/api/auth/login', this.state,
         { withCredentials: true }
       )
         
