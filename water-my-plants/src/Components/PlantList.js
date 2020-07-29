@@ -20,11 +20,11 @@ function PlantList() {
                     <Card key={i}>
                         <CardImg top width = '100%' src={img} alt='placeholder image' />
                         <CardBody>
-                            <CardTitle>{plant.plantName}</CardTitle>
-                            <CardSubtitle>{plant.plantSpecies}</CardSubtitle>
-                            {plant.weekly !== '' ? <CardText>{plant.weekly}</CardText> : <CardText>{plant.intervalNum}</CardText>}
-                            {/* <ModalExample buttonLabel='Edit Plant' /> */}
-
+                            <CardTitle>Nickname: {plant.plantName}</CardTitle>
+                            <CardSubtitle>Type of Plant: {plant.plantSpecies}</CardSubtitle>
+                            <CardText>Watering Frequency:</CardText>
+                            {plant.weekly !== '' ? <CardText>Every {plant.weekly}</CardText> : <CardText>Every {plant.intervalNum} days</CardText>}
+                            <CardText>Starting on: {plant.startDate}</CardText>
                             <div><ModalExample buttonLabel='Edit Plant' plantId={i} /></div>
                         </CardBody>
                     </Card>
