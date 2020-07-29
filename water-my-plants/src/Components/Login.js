@@ -56,7 +56,7 @@ export default class Login extends Component {
               value={this.state.username}
               onChange={this.handleChange}
             required
-            />
+          />
 
             <input
               type="password"
@@ -65,12 +65,12 @@ export default class Login extends Component {
               value={this.state.password}
               onChange={this.handleChange}
             required
-            />
+          />
 
-            <button>Login</button>
-          </form>
-        </div>
-      );
-    }
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    );
   }
+}
 
