@@ -5,38 +5,42 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      credentials:{
         username: "",
-        password: ""
-      }
+        password: "",
+        loginErrors: ""
+
+      
       };
 
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-    handleChange = e => {
-      this.setState({
-        credentials: {
-          ...this.state.credentials,
-          [e.target.name]: e.target.value
-        }
-        });
-    };
+    handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value 
+    });
+    console.log(this.state)
+  }
 
     handleSubmit = e => {
       e.preventDefault()
-      // const { email, password } = this.state;
+      const { username, password } = this.state;
 
       axios
         .post(
-          "/api/auth/login", this.state.credentials,
-          { withCredentials: true }
-        )
+          "https://water-my-plants1.herokuapp.com/api/auth/login", this.state,
+        { withCredentials: true }
+      )
+        
         .then(res => {
           console.log(res);
           localStorage.setItem('token', res.payload);
           this.props.history.push('/plantlist');
+          if (res.data.logged_in) {
+          this.props.handleSuccessfulAuth(res.data);
+        }
+
         })
         .catch(err => console.log({ err }));
     };
@@ -49,7 +53,7 @@ export default class Login extends Component {
               type="text"
               name="username"
               placeholder="Username"
-              value={this.state.credentials.username}
+              value={this.state.username}
               onChange={this.handleChange}
             required
             />
@@ -58,7 +62,7 @@ export default class Login extends Component {
               type="password"
               name="password"
               placeholder="Password"
-              value={this.state.credentials.password}
+              value={this.state.password}
               onChange={this.handleChange}
             required
             />
