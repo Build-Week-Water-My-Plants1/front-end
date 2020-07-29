@@ -8,6 +8,7 @@ export default class Registration extends Component {
     this.state = {
       email: "",
       password: "",
+      phonenumber: "",
       password_confirmation: "",
       registrationErrors: ""
     };
@@ -18,6 +19,7 @@ export default class Registration extends Component {
 
   handleChange(event) {
     this.setState({
+      ...this.state,
       [event.target.name]: event.target.value
     });
   }
@@ -57,6 +59,15 @@ export default class Registration extends Component {
             name="email"
             placeholder="Email"
             value={this.state.email}
+            onChange={this.handleChange}
+            required
+          />
+
+<input
+            type="phonenumber"
+            name="phonenumber"
+            placeholder="Phonenumber"
+            value={this.state.phonenumber}
             onChange={this.handleChange}
             required
           />
