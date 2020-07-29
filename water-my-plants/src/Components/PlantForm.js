@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
-import PlantForm from './PlantForm';
+import { Button, ModalFooter } from 'reactstrap';
+import data from './data';
 
-function AddPlant(propsFromModal) {
+function PlantForm(propsFromModal) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const defaultState = {
         plantName: '',
@@ -11,6 +12,18 @@ function AddPlant(propsFromModal) {
         intervalNum: 0,
         startDate: '',
     }
+
+    let id = propsFromModal.plantId;
+
+    const editState = {
+        plantName: data[id].plantName,
+        plantSpecies: data[id].plantSpecies,
+        weekly: '',
+        intervalNum: 0,
+        startDate: data[id].startDate,
+    }
+
+    console.log(propsFromModal)
     
     const [plant, setPlant] = useState(defaultState);
     const [errors, setErrors] = useState(defaultState);
@@ -57,6 +70,11 @@ function AddPlant(propsFromModal) {
     }
     
     useEffect(() => {
+        if(propsFromModal.plantId) {
+            
+            setPlant(editState);
+        }
+
         formSchema.isValid(plant).then(valid => setDisableButton(!valid));
     }, [formSchema, plant])
 
@@ -83,10 +101,47 @@ function AddPlant(propsFromModal) {
 
     return(
         <div>
-            <p>Add A Plant</p>
-            <PlantForm addPlantProps toggle={propsFromModal.toggle} />
+            <form onSubmit={handleSubmit}>
+                {inputText('plantName',
+                           'Plant Nickname: ',
+                           'text',
+                           'plantName', 
+                           plant.plantName,
+                           handleChange,
+                           plant.errors
+                           )}
+                {errors.plantName.length > 0 ? <p>{errors.plantName}</p> : ''}
+                {inputText('plantSpecies',
+                           'Plant Species: ',
+                           'text',
+                           'plantSpecies', 
+                           plant.plantSpecies,
+                           handleChange,
+                           plant.errors
+                           )}
+                {errors.plantSpecies.length > 0 ? <p>{errors.plantSpecies}</p> : ''}
+                <p>Watering Frequency</p>
+                {'Weekly: '}
+                <label htmlFor='weekly'>
+                    <select name='weekly' onChange={handleChange} value={plant.weekly}>
+                        <option value=''> Choose a day:</option>
+                        {days.map((day, i) => 
+                            <option value={day} key={i}>{day}</option>
+                        )}
+                    </select>
+                </label>
+                <br />
+                {inputText('intervalNum', 'Every ', 'number', 'intervalNum', plant.intervalNum, handleChange, errors)} days
+                <br />
+                {inputText('startDate', 'Start Date ', 'date', 'startDate', plant.startDate, handleChange, errors)}
+                {errors.startDate.length > 0 ? <p>{errors.startDate}</p> : ''}
+                <ModalFooter>
+                    <Button color="primary" type='submit' disabled={disableButton} onClick={propsFromModal.toggle}>Submit</Button>{' '}
+                    <Button color="secondary" onClick={propsFromModal.toggle}>Cancel</Button>
+                </ModalFooter>
+            </form>
         </div>
     )
 }
 
-export default AddPlant;
+export default PlantForm;

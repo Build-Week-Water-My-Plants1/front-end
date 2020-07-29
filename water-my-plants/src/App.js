@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './App.css';
 import PlantList from './Components/PlantList';
@@ -24,7 +23,6 @@ function App() {
     </div>
   );
 }
-
 export default App;
       
     
