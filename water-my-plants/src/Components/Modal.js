@@ -18,9 +18,9 @@ const ModalExample = (props) => {
     <div>
       <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle}>{buttonLabel}</ModalHeader>
         <ModalBody>
-            <PlantForm toggle={toggle} />
+            <PlantForm toggle={toggle} plantId={props.plantId} />
         </ModalBody>
       </Modal>
     </div>

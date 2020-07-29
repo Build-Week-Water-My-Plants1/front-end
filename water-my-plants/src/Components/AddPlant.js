@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
-import { Button, ModalFooter } from 'reactstrap';
 import PlantForm from './PlantForm';
 
-function AddPlant(props) {
+function AddPlant(propsFromModal) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const defaultState = {
         plantName: '',
@@ -85,7 +84,7 @@ function AddPlant(props) {
     return(
         <div>
             <p>Add A Plant</p>
-            <PlantForm addPlantProps />
+            <PlantForm addPlantProps toggle={propsFromModal.toggle} />
         </div>
     )
 }

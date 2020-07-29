@@ -15,18 +15,20 @@ function PlantList() {
         <div>
             <p>plant list</p>
             <ModalExample buttonLabel='Add a Plant' />
-                <CardColumns>
-                 {dataHere.map((plant, i) => (
-                    <Card key={i} onClick={() => console.log(plant.plantName)}>
+            <CardColumns>
+                {dataHere.map((plant, i) => (
+                    <Card key={i}>
                         <CardImg top width = '100%' src={img} alt='placeholder image' />
                         <CardBody>
                             <CardTitle>{plant.plantName}</CardTitle>
                             <CardSubtitle>{plant.plantSpecies}</CardSubtitle>
                             {plant.weekly !== '' ? <CardText>{plant.weekly}</CardText> : <CardText>{plant.intervalNum}</CardText>}
-                            <Button>Edit Plant</Button>
+                            {/* <ModalExample buttonLabel='Edit Plant' /> */}
+
+                            <div><ModalExample buttonLabel='Edit Plant' plantId={i} /></div>
                         </CardBody>
                     </Card>
-            ))}
+                ))}
             </CardColumns>
         </div>
     )
