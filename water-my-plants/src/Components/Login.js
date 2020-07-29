@@ -2,61 +2,68 @@ import React, { Component } from "react";
 import axios from "axios";
 
 export default class Login extends Component {
-          state = {
-            credentials:{
-            email: "",
-            password: "",
-            phone:"",
-            loginErrors: ""
-       }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+        username: "",
+        password: "",
+        loginErrors: ""
 
-  handleChange(event) {
+      
+      };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+    handleChange(event) {
     this.setState({
-      credentials:{
-      [event.target.name]: event.target.value
-      }
+      [event.target.name]: event.target.value 
     });
+    console.log(this.state)
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    // const { email, password } = this.state;
+    handleSubmit = e => {
+      e.preventDefault()
+      const { username, password } = this.state;
 
-    axios
-      .post(
-        "http://localhost:3000/login",this.state.credentials)//???
-      .then(res => {
-        if (res.data) {
-          localStorage.setItem('token', res.data.payload);
-          this.props.history.push('/plants');//????
+      axios
+        .post(
+          'https://cors-anywhere.herokuapp.com/https://water-my-plants1.herokuapp.com/api/auth/login', this.state,
+        { withCredentials: true }
+      )
+        
+        .then(res => {
+          console.log(res);
+          localStorage.setItem('token', res.payload);
+          this.props.history.push('/plantlist');
+          if (res.data.logged_in) {
+          this.props.handleSuccessfulAuth(res.data);
         }
-      })
-      .catch(error => {
-        console.log("login error", error);
-      });
-    event.preventDefault();
-  }
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={this.state.credentials.email}
-            onChange={this.handleChange}
+        })
+        .catch(err => console.log({ err }));
+    };
+
+    render() {
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={this.state.username}
+              onChange={this.handleChange}
             required
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handleChange}
             required
           />
 
