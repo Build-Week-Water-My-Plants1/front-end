@@ -13,21 +13,19 @@ function PlantForm(propsFromModal) {
         intervalNum: 0,
         startDate: '',
     }
-
-    // console.log(propsFromModal)
     
     const [plant, setPlant] = useState(defaultState);
-    useEffect(() => {if(propsFromModal.plantId) {
+    useEffect(() => {if(propsFromModal.plantId >= 0) {
         const id = propsFromModal.plantId;
         const editState = {
             plantName: data[id].plantName,
             plantSpecies: data[id].plantSpecies,
-            weekly: '',
-            intervalNum: 0,
+            weekly: data[id].weekly,
+            intervalNum: data[id].intervalNum,
             startDate: data[id].startDate,
         }
         setPlant(editState);
-    }}, [])
+    }}, [propsFromModal.plantId])
     const [errors, setErrors] = useState(defaultState);
     const [disableButton, setDisableButton] = useState(true);
 
@@ -92,7 +90,6 @@ function PlantForm(propsFromModal) {
             ...plant,
             [event.target.name]: event.target.value
         });
-        console.log('submit plant', plant);
         setPlant(defaultState);
     }
 

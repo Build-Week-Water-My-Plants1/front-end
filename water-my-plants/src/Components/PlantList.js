@@ -3,7 +3,7 @@ import data from './data';
 import * as img from '../assets/brown-plant-and-flowers-1924867.jpg'
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, CardColumns
+  CardTitle, CardSubtitle, CardColumns
 } from 'reactstrap';
 import ModalExample from './Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
