@@ -2,42 +2,34 @@ import React, { Component } from "react";
 import axios from "axios";
 
 export default class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      password: "",
-      loginErrors: ""
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+          state = {
+            credentials:{
+            email: "",
+            password: "",
+            phone:"",
+            loginErrors: ""
+       }
+  };
 
   handleChange(event) {
     this.setState({
+      credentials:{
       [event.target.name]: event.target.value
+      }
     });
   }
 
   handleSubmit(event) {
-    const { email, password } = this.state;
+    event.preventDefault();
+    // const { email, password } = this.state;
 
     axios
       .post(
-        "http://localhost:3001/sessions",
-        {
-          user: {
-            email: email,
-            password: password
-          }
-        },
-        { withCredentials: true }
-      )
-      .then(response => {
-        if (response.data.logged_in) {
-          this.props.handleSuccessfulAuth(response.data);
+        "http://localhost:3000/login",this.state.credentials)//???
+      .then(res => {
+        if (res.data) {
+          localStorage.setItem('token', res.data.payload);
+          this.props.history.push('/plants');//????
         }
       })
       .catch(error => {
@@ -54,7 +46,7 @@ export default class Login extends Component {
             type="email"
             name="email"
             placeholder="Email"
-            value={this.state.email}
+            value={this.state.credentials.email}
             onChange={this.handleChange}
             required
           />
@@ -63,7 +55,7 @@ export default class Login extends Component {
             type="password"
             name="password"
             placeholder="Password"
-            value={this.state.password}
+            value={this.state.credentials.password}
             onChange={this.handleChange}
             required
           />
