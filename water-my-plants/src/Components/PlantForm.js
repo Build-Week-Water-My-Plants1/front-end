@@ -5,6 +5,7 @@ import data from './data';
 
 function PlantForm(propsFromModal) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
     const defaultState = {
         plantName: '',
         plantSpecies: '',
@@ -13,19 +14,20 @@ function PlantForm(propsFromModal) {
         startDate: '',
     }
 
-    let id = propsFromModal.plantId;
-
-    const editState = {
-        plantName: data[id].plantName,
-        plantSpecies: data[id].plantSpecies,
-        weekly: '',
-        intervalNum: 0,
-        startDate: data[id].startDate,
-    }
-
-    console.log(propsFromModal)
+    // console.log(propsFromModal)
     
     const [plant, setPlant] = useState(defaultState);
+    useEffect(() => {if(propsFromModal.plantId) {
+        const id = propsFromModal.plantId;
+        const editState = {
+            plantName: data[id].plantName,
+            plantSpecies: data[id].plantSpecies,
+            weekly: '',
+            intervalNum: 0,
+            startDate: data[id].startDate,
+        }
+        setPlant(editState);
+    }}, [])
     const [errors, setErrors] = useState(defaultState);
     const [disableButton, setDisableButton] = useState(true);
 
@@ -70,13 +72,8 @@ function PlantForm(propsFromModal) {
     }
     
     useEffect(() => {
-        if(propsFromModal.plantId) {
-            
-            setPlant(editState);
-        }
-
         formSchema.isValid(plant).then(valid => setDisableButton(!valid));
-    }, [formSchema, plant])
+        }, [formSchema, plant])
 
     const handleChange = event => {
         const targetValue =
