@@ -80,7 +80,6 @@ function PlantForm(propsFromModal) {
             ...plant,
             [event.target.name]: targetValue
         });
-        console.log('changed plant', plant);
         validateChange(event, targetValue);
     }
 
