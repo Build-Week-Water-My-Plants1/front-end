@@ -7,11 +7,13 @@ import {
 } from 'reactstrap';
 import ModalExample from './Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 import { getPlants } from "../actions/actions";
 import { connect } from "react-redux";
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 function PlantList({plants, getPlants}) {
-    //const [dataHere] = useState(data);
+    let result = [{}];
 
     useEffect(() => {
         getPlants();
@@ -47,3 +49,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {getPlants})(PlantList);
+
+axiosWithAuth().get()

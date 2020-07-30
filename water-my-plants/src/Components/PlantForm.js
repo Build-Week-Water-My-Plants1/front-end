@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import * as yup from 'yup';
 import { Button, ModalFooter } from 'reactstrap';
 import data from './data';
+import axios from 'axios';
 
 function PlantForm(propsFromModal) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -89,6 +90,7 @@ function PlantForm(propsFromModal) {
             ...plant,
             [event.target.name]: event.target.value
         });
+
         setPlant(defaultState);
     }
 
