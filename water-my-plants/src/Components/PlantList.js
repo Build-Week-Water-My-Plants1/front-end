@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from  'react';
-import data from './data';
 import * as img from '../assets/brown-plant-and-flowers-1924867.jpg'
 import {
   Card, CardImg, CardText, CardBody,
