@@ -10,7 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { getPlants } from "../actions/actions";
 import { connect } from "react-redux";
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 function PlantList({plants, getPlants}) {
     let result = [{}];
@@ -18,6 +17,8 @@ function PlantList({plants, getPlants}) {
     useEffect(() => {
         getPlants();
     }, []);
+
+    console.log(plants);
 
     return(
         <div>
@@ -44,7 +45,7 @@ function PlantList({plants, getPlants}) {
 
 const mapStateToProps = state => {
     return {
-        plants: state.plantReducer.plants
+        plants: state.plants
     }
 }
 
