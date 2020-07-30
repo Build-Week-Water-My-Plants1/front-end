@@ -7,16 +7,28 @@ import {
 } from 'reactstrap';
 import ModalExample from './Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 function PlantList() {
     const [dataHere] = useState(data);
+    let result = [{}];
+
+    axios
+        .get("https://reqres.in/api/users?page=2")
+        .then(res => {
+            Object.values(res.data.data).map(val =>
+                result.push(val));
+
+        })
+        .catch(err => console.log(err));
+        console.log('result arr', result);
 
     return(
         <div>
             <p>plant list</p>
             <ModalExample buttonLabel='Add a Plant' />
             <CardColumns>
-                {dataHere.map((plant, i) => (
+                {data.map((plant, i) => (
                     <Card key={i}>
                         <CardImg top width = '100%' src={img} alt='placeholder image' />
                         <CardBody>
