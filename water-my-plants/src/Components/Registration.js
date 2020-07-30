@@ -1,5 +1,31 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const Button = styled.button`
+    
+    border-style: solid;
+    border-radius: 30px;
+    padding: 1.5rem 2.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    font-family: "Inter", sans-serif;
+
+  `
+
+
+  const CustomForm = styled.form`
+    
+    background-color: transparent; /* Remove background fill */
+    text-transform: uppercase; /* Make text all uppercase */
+    border-radius: 0; /* Remove corner curve */
+    border: 2px solid #fff; /* 2px white border */
+    color: #2B3438; /* White text */
+    height: 45px; /* Increase input height */
+
+`
+
 
 export default class Registration extends Component {
   constructor(props) {

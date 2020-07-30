@@ -1,5 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const Button = styled.button`
+    
+    border-style: solid;
+    border-radius: 30px;
+    padding: 1.5rem 2.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    font-family: "Inter", sans-serif;
+
+  `
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -44,6 +58,11 @@ export default class Login extends Component {
         })
         .catch(err => console.log({ err }));
     };
+
+
+    
+
+   
 
     render() {
       return (
