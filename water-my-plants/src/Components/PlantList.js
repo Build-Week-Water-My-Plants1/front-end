@@ -24,7 +24,7 @@ function PlantList({plants, getPlants}) {
 
     return(
         <div>
-            {/* <Nav /> */}
+            <Nav />
             <p>plant list</p>
             <ModalExample buttonLabel='Add a Plant' />
             <CardColumns>
