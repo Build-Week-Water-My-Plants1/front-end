@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import Nav from './Nav';
 
-function PlantList({plants, getPlants}) {
+function PlantList({plants, getPlants, deletePlant}) {
     let result = [{}];
 
     useEffect(() => {
@@ -56,4 +56,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getPlants},{deletePlant})(PlantList);
+export default connect(mapStateToProps, {getPlants ,deletePlant})(PlantList);
