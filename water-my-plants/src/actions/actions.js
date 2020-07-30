@@ -7,6 +7,7 @@ export const FETCHING_DATA_FAILURE = 'FETCHING_DATA_FAILURE';
 export const ADD_PLANT = 'ADD_PLANT';
 export const EDIT_PLANT = 'EDIT_PLANT';
 export const DELETE_PLANT = 'DELETE_PLANT';
+export const EDIT_USER = 'EDIT_USER';
 
 export const getPlants = () => dispatch => {
     dispatch({type: FETCHING_DATA_START});
@@ -60,9 +61,20 @@ export const editPlant = (plant) => (dispatch) => {
     .put(`/plantlist/${plant.id}`, plant)
     .then(res=>{
         dispatch({
-            type: UPDATE_PLANT,
+            type: EDIT_PLANT,
             payload: plant
         });
+    })
+    .catch((err)=>{
+        console.log(err)
+    });
+};
+
+export const editUserInfo = (user) => (dispatch) => {
+    axiosWithAuth()
+    .put(`${user.id}`, user) //need to get the endpoint for this
+    .then(res=>{
+        console.log(res);
     })
     .catch((err)=>{
         console.log(err)

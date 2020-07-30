@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { plantReducer } from "../reducers/plantReducer";
+import thunk from 'redux-thunk';
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    plants: plantReducer
   },
-});
+}, [thunk]);

@@ -6,9 +6,9 @@ export default class Registration extends Component {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
+      username: "",
       phonenumber: "",
+      password: "",
       password_confirmation: "",
       registrationErrors: ""
     };
@@ -25,27 +25,28 @@ export default class Registration extends Component {
   }
 
   handleSubmit(event) {
-    const { email, password, password_confirmation } = this.state;
+    const { username, phonenumber, password} = this.state;
 
     axios
       .post(
-        "http://localhost:3001/registrations",
+        "https://water-my-plants1.herokuapp.com/api/auth/register",
         {
           user: {
-            email: email,
-            password: password,
-            password_confirmation: password_confirmation
+            username: username,
+            phone_number: phonenumber,
+            password: password
           }
         },
         { withCredentials: true }
       )
-      .then(response => {
-        if (response.data.status === "created") {
-          this.props.handleSuccessfulAuth(response.data);
-        }
+      .then(res => {
+        console.log(res);
+        //localStorage.setItem("token", res.data.token); need to figure out the exact response
+        // this.props.history.push("/plantlist"); //need to figure out exact route
+
       })
-      .catch(error => {
-        console.log("registration error", error);
+      .catch(err => {
+        console.log("registration error", err);
       });
     event.preventDefault();
   }
@@ -55,18 +56,17 @@ export default class Registration extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={this.state.email}
+            name="username"
+            placeholder="Username"
+            value={this.state.username}
             onChange={this.handleChange}
             required
           />
 
-<input
+          <input
             type="phonenumber"
             name="phonenumber"
-            placeholder="Phonenumber"
+            placeholder="Phone number"
             value={this.state.phonenumber}
             onChange={this.handleChange}
             required

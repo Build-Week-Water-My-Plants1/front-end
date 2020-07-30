@@ -1,4 +1,4 @@
-import React, {useState} from  'react';
+import React, {useState, useEffect} from  'react';
 import data from './data';
 import * as img from '../assets/brown-plant-and-flowers-1924867.jpg'
 import {
@@ -22,13 +22,22 @@ function PlantList() {
         })
         .catch(err => console.log(err));
         console.log('result arr', result);
+import { getPlants } from "../actions/actions";
+import { connect } from "react-redux";
+
+function PlantList({plants, getPlants}) {
+    //const [dataHere] = useState(data);
+
+    useEffect(() => {
+        getPlants();
+    }, []);
 
     return(
         <div>
             <p>plant list</p>
             <ModalExample buttonLabel='Add a Plant' />
             <CardColumns>
-                {data.map((plant, i) => (
+                {plants.map((plant, i) => (
                     <Card key={i}>
                         <CardImg top width = '100%' src={img} alt='placeholder image' />
                         <CardBody>
@@ -46,4 +55,10 @@ function PlantList() {
     )
 }
 
-export default PlantList;
+const mapStateToProps = state => {
+    return {
+        plants: state.plantReducer.plants
+    }
+}
+
+export default connect(mapStateToProps, {getPlants})(PlantList);
