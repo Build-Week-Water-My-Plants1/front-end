@@ -8,9 +8,14 @@ import ModalExample from './Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { getPlants } from "../actions/actions";
+import { deletePlant } from "../actions/actions";
+
 import { connect } from "react-redux";
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import Nav from './Nav';
 
 function PlantList({plants, getPlants}) {
+    let result = [{}];
 
     useEffect(() => {
         getPlants();
@@ -18,6 +23,7 @@ function PlantList({plants, getPlants}) {
 
     return(
         <div>
+            {/* <Nav /> */}
             <p>plant list</p>
             <ModalExample buttonLabel='Add a Plant' />
             <CardColumns>
@@ -30,7 +36,9 @@ function PlantList({plants, getPlants}) {
                             <CardText>Watering Frequency:</CardText>
                             {plant.weekly !== '' ? <CardText>Every {plant.weekly}</CardText> : <CardText>Every {plant.intervalNum} days</CardText>}
                             <CardText>Starting on: {plant.startDate}</CardText>
-                            <div><ModalExample buttonLabel='Edit Plant' plantId={i} /></div>
+                            <div><ModalExample buttonLabel='Edit Plant' plantId={i} />
+
+                            <button onclick={()=>deletePlant(plant)}>Delete</button></div>
                         </CardBody>
                     </Card>
                 ))}
@@ -45,4 +53,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getPlants})(PlantList);
+export default connect(mapStateToProps, {getPlants},{deletePlant})(PlantList);

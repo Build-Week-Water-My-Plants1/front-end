@@ -30,11 +30,11 @@ export default class Login extends Component {
 
     handleSubmit = e => {
       e.preventDefault()
-      // const { username, password } = this.state;
+      const { username, password } = this.state;
 
       axios
         .post(
-          "https://cors-anywhere.herokuapp.com/https://water-my-plants1.herokuapp.com/api/auth/login",
+          "https://water-my-plant1.herokuapp.com/api/auth/login",
           this.state.credentials,
         //   {
         //   user: {
