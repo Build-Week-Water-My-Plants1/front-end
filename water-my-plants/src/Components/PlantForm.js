@@ -91,11 +91,6 @@ function PlantForm(propsFromModal) {
             [event.target.name]: event.target.value
         });
 
-        axios
-            .post("https://reqres.in/api/users", plant)
-            .then(res => console.log('res', res))
-            .catch(err => console.log('err', err));
-
         setPlant(defaultState);
     }
 
@@ -145,3 +140,11 @@ function PlantForm(propsFromModal) {
 }
 
 export default PlantForm;
+
+// const mapStateToProps = state => {
+//     return {
+//         plants: state.plantReducer.plants
+//     }
+// }
+
+// export default connect(mapStateToProps, {getPlants})(PlantList);
