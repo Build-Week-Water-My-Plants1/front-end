@@ -13,14 +13,12 @@ function App() {
   return (
     <div className="App">
     
-      {/* <Switch>
+      <Switch>
       <Route exact path='/' component={Home} />
 
       <PrivateRoute exact path ='/plantlist' component ={PlantList}/>
       <Route path ='/login' component = {Login}/>
-      </Switch> */}
-
-  <Route path ='/' component = {PlantList}/>
+      </Switch>
 
     </div>
   );
