@@ -6,6 +6,7 @@ import Home from './Components/Home';
 import PrivateRoute from './utils/PrivateRoute';
 import {BrowserRouter as Switch } from 'react-router-dom';
 import Login from './Components/Login'
+import ModalExample from './Components/Modal';
 
 
 function App() {

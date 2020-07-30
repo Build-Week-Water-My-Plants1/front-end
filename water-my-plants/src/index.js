@@ -2,10 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './app/store';
+//import store from './app/store';
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { plantReducer } from "./reducers/plantReducer";
+
+const store = createStore(plantReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
