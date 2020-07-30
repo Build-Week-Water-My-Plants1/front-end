@@ -138,3 +138,11 @@ function PlantForm(propsFromModal) {
 }
 
 export default PlantForm;
+
+// const mapStateToProps = state => {
+//     return {
+//         plants: state.plantReducer.plants
+//     }
+// }
+
+// export default connect(mapStateToProps, {getPlants})(PlantList);

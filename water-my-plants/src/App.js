@@ -18,6 +18,7 @@ function App() {
       <PrivateRoute exact path ='/plantlist' component ={PlantList}/>
       <Route path ='/login' component = {Login}/>
       </Switch>
+
     </div>
   );
 }
