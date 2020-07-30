@@ -49,5 +49,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {getPlants})(PlantList);
-
-axiosWithAuth().get()
