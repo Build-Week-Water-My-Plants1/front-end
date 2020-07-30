@@ -15,7 +15,7 @@ const initialState = {
     // deletingError: ""
 }
 
-export const plantsReducer = (state = initialState, action) => {
+export const plantReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCHING_DATA_START:
             return {
@@ -53,5 +53,7 @@ export const plantsReducer = (state = initialState, action) => {
                 ...state,
                 plants: state.plants.filter(plant => plant.id !== action.payload.id)
             };
+        default:
+            return state;
     }
 }
