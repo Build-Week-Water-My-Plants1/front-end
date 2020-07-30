@@ -25,7 +25,10 @@ export const plantReducer = (state = initialState, action) => {
             };
         case FETCHING_DATA_SUCCESS:
             console.log(action.payload);
-            return state; //will need to set plants here when endpoint is working
+            return {
+                ...state,
+                plants: action.payload
+            }; //will need to know exact response when endpoint is working
         case FETCHING_DATA_FAILURE:
             return {
                 ...state,
