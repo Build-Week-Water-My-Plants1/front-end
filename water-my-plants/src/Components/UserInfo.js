@@ -1,8 +1,48 @@
 import React, { useState, useEffect } from 'react';
+import img from '../assets/plant3.jpg';
 
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { editUserInfo } from '../actions/actions';
+import styled from 'styled-components';
 
+const Input =styled.input`
+width: 335px;
+height: 40px;
+stroke: #d6ebec;
+border-radius: 10px;
+margin: 10px;
+`;
+
+const Container= styled.div`
+    margin-top: 20px;
+    background-image: url(${img});
+    background-size: 100% auto;
+    padding-bottom: 300px;
+    padding-top: 50px;
+    margin: 0 auto;
+    `
+    
+    
+const Button = styled.button`
+width: 227px;
+height: 36px;
+background-color: #00bdc8;
+border-radius: 20px;
+color: #ffffff;
+`;
+// const H3 = styled.h3`
+//  font-family: 'Inter', sans-serif;
+// font-weight: bold;
+// color: #2b3438;
+// `;
+const H1 = styled.h1`
+font-size: 2em;
+padding: 10px;
+ font-family: 'Inter', sans-serif;
+ font-weight: bold;
+color: #2b3438;
+
+`;
 
 const UserInfo = () => {
     const [user, setUser] = useState([]);
@@ -23,7 +63,8 @@ const UserInfo = () => {
             })
     };
 
-    const editUserInfo = () => {
+    const editUserInfo = (e) => {
+        e.preventDefault();
         axiosWithAuth()
             .put('/api/users',user)
             .then(res => {
@@ -45,16 +86,16 @@ const UserInfo = () => {
 
 
     return (
-        <div>
-            <h1>Update Account</h1>
-            <div>
-                <h3>Username: {user.username}</h3>
-                <h3>Phone Number: {user.phone_number}</h3>
+        <Container>
+            <H1>Update Account</H1>
+            {/* <div>
+                <H3>Username: {user.username}</H3>
+                <H3>Phone Number: {user.phone_number}</H3>
 
-            </div>
+            </div> */}
             <form onSubmit={editUserInfo}>
                 
-                <input
+                <Input
                     type='text'
                     name='phone_number'
                     id='phone_number'
@@ -62,19 +103,20 @@ const UserInfo = () => {
                     value={user.phone_number}
                     onChange={handleChange}
 
-                />
-                <input
+                /><br/>
+                
+                <Input
                     type='password'
                     name='password'
                     id='password'
                     placeholder='Update Password'
                     value={user.password}
                     onChange={handleChange}
-                />
-                <button >Update</button>
+                /><br/>
+                <Button >Update</Button>
             </form>
 
-        </div>
+        </Container>
     )
 }
 export default UserInfo;
