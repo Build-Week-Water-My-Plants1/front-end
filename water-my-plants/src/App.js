@@ -8,8 +8,8 @@ import {BrowserRouter as Switch } from 'react-router-dom';
 import Login from './Components/Login'
 import Registration from './Components/Registration';
 import UserInfo from './Components/UserInfo';
-=======
 import ModalExample from './Components/Modal';
+
 
 
 function App() {
@@ -28,3 +28,8 @@ function App() {
   );
 }
 export default App;
+      
+    
+
+  
+
