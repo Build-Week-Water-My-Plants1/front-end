@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import Nav from './Nav';
 
+
 function PlantList({plants, getPlants, deletePlant}) {
     let result = [{}];
 
@@ -25,7 +26,7 @@ function PlantList({plants, getPlants, deletePlant}) {
 
     return(
         <div>
-            <Nav />
+           <Nav />
             <p>plant list</p>
             <ModalExample buttonLabel='Add a Plant' />
 

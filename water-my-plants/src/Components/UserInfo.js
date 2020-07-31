@@ -4,6 +4,8 @@ import img from '../assets/plant3.jpg';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { editUserInfo } from '../actions/actions';
 import styled from 'styled-components';
+import Nav from './Nav';
+
 
 const Input =styled.input`
 width: 335px;
@@ -29,6 +31,7 @@ height: 36px;
 background-color: #00bdc8;
 border-radius: 20px;
 color: #ffffff;
+border: 1px solid #00bdc8
 `;
 // const H3 = styled.h3`
 //  font-family: 'Inter', sans-serif;
@@ -87,6 +90,7 @@ const UserInfo = () => {
 
     return (
         <Container>
+            <Nav />
             <H1>Update Account</H1>
             {/* <div>
                 <H3>Username: {user.username}</H3>

@@ -8,7 +8,12 @@ import {Link} from 'react-router-dom';
     return(
     <nav>
         {/* <h3>{props.username}</h3> */}
+                <Link to ='/'>Home</Link>
+                <Link to ='/plantlist'>Add Plant</Link>
+                 <Link to ='/plantlist2'>View Plants</Link>
                 <Link to ='/userinfo'>Account</Link>
+
+
 
     </nav>
     )
