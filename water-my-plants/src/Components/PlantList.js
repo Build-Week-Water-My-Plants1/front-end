@@ -28,6 +28,7 @@ function PlantList({plants, getPlants, deletePlant}) {
             <Nav />
             <p>plant list</p>
             <ModalExample buttonLabel='Add a Plant' />
+
             <CardColumns>
                 {plants.map((plant, i) => (
                     <Card key={i}>
