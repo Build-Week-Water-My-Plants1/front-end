@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from  'react';
-import data from './data';
 import * as img from '../assets/brown-plant-and-flowers-1924867.jpg'
 import {
   Card, CardImg, CardText, CardBody,
@@ -15,12 +14,14 @@ import { connect } from "react-redux";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import Nav from './Nav';
 
-function PlantList({plants, getPlants}) {
+function PlantList({plants, getPlants, deletePlant}) {
     let result = [{}];
 
     useEffect(() => {
         getPlants();
     }, []);
+
+    console.log(plants);
 
     return(
         <div>
@@ -50,8 +51,8 @@ function PlantList({plants, getPlants}) {
 
 const mapStateToProps = state => {
     return {
-        plants: state.plantReducer.plants
+        plants: state.plants
     }
 }
 
-export default connect(mapStateToProps, {getPlants},{deletePlant})(PlantList);
+export default connect(mapStateToProps, {getPlants ,deletePlant})(PlantList);
