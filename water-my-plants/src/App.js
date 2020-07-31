@@ -6,6 +6,9 @@ import Home from './Components/Home';
 import PrivateRoute from './utils/PrivateRoute';
 import {BrowserRouter as Switch } from 'react-router-dom';
 import Login from './Components/Login'
+import Registration from './Components/Registration';
+import UserInfo from './Components/UserInfo';
+=======
 import ModalExample from './Components/Modal';
 
 
@@ -15,9 +18,10 @@ function App() {
     
       <Switch>
       <Route exact path='/' component={Home} />
-
+      <Route path ='/register' component={Registration}/>
       <PrivateRoute exact path ='/plantlist' component ={PlantList}/>
       <Route path ='/login' component = {Login}/>
+      <Route path ='/userinfo' component={UserInfo}/>
       </Switch>
 
     </div>

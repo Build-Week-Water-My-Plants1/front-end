@@ -25,7 +25,7 @@ function PlantList({plants, getPlants, deletePlant}) {
 
     return(
         <div>
-            {/* <Nav /> */}
+            <Nav />
             <p>plant list</p>
             <ModalExample buttonLabel='Add a Plant' />
             <CardColumns>
