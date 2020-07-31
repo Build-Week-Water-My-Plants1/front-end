@@ -6,6 +6,8 @@ import {
 import ModalExample from './Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import Nav from './Nav';
+
 
 function LizPlantList() {
     const [plants, setPlants] = useState([]);
@@ -21,6 +23,7 @@ function LizPlantList() {
 
     return(
         <div>
+             <Nav />
             <p>Your Plants</p>
             <ModalExample buttonLabel='Add a Plant' />
             <CardColumns>

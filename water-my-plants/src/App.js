@@ -9,7 +9,7 @@ import Login from './Components/Login'
 import Registration from './Components/Registration';
 import UserInfo from './Components/UserInfo';
 import ModalExample from './Components/Modal';
-
+import LizPlantList from './Components/LizPlantList'
 
 
 function App() {
@@ -20,6 +20,8 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route path ='/register' component={Registration}/>
       <PrivateRoute exact path ='/plantlist' component ={PlantList}/>
+      <PrivateRoute exact path ='/plantlist2' component ={LizPlantList}/>
+
       <Route path ='/login' component = {Login}/>
       <Route path ='/userinfo' component={UserInfo}/>
       </Switch>
