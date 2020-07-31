@@ -2,15 +2,36 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-const Button = styled.button`
+const CustomInput = styled.input`
+  
+  display: flex;
+  justify-content: center;
+  outline: none;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+
+`
+
+const CustomButton = styled.button`
     
-    border-style: solid;
-    border-radius: 30px;
-    padding: 1.5rem 2.5rem;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    font-family: "Inter", sans-serif;
+    line-height: 40px;
+  display: inline-block;
+  padding: 0 25px;
+  cursor: pointer;
+  color: #00BDC8;
+  font-family: "Inter", sans-serif;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  font-size: 14px;
+  font-weight: 700;
 
   `
 
@@ -68,7 +89,7 @@ export default class Login extends Component {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
-            <input
+            <CustomInput
               type="text"
               name="username"
               placeholder="Username"
@@ -77,7 +98,7 @@ export default class Login extends Component {
             required
           />
 
-            <input
+            <CustomInput
               type="password"
               name="password"
               placeholder="Password"
@@ -86,7 +107,7 @@ export default class Login extends Component {
             required
           />
 
-          <button type="submit">Login</button>
+          <CustomButton type="submit">Login</CustomButton>
         </form>
       </div>
     );

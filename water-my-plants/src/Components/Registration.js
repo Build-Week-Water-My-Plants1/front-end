@@ -2,27 +2,40 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-const Button = styled.button`
+const CustomButton = styled.button`
     
-    border-style: solid;
-    border-radius: 30px;
-    padding: 1.5rem 2.5rem;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    font-family: "Inter", sans-serif;
+    line-height: 40px;
+  display: inline-block;
+  padding: 0 25px;
+  cursor: pointer;
+  color: #00BDC8;
+  font-family: "Inter", sans-serif;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  font-size: 14px;
+  font-weight: 700;
 
   `
 
 
-  const CustomForm = styled.form`
-    
-    background-color: transparent; /* Remove background fill */
-    text-transform: uppercase; /* Make text all uppercase */
-    border-radius: 0; /* Remove corner curve */
-    border: 2px solid #fff; /* 2px white border */
-    color: #2B3438; /* White text */
-    height: 45px; /* Increase input height */
+
+
+  const CustomInput = styled.input`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #e5e5e5;
+  outline: none;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
 
 `
 
@@ -80,7 +93,7 @@ export default class Registration extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input
+          <CustomInput
             type="email"
             name="email"
             placeholder="Email"
@@ -89,7 +102,7 @@ export default class Registration extends Component {
             required
           />
 
-<input
+<CustomInput
             type="phonenumber"
             name="phonenumber"
             placeholder="Phonenumber"
@@ -98,7 +111,7 @@ export default class Registration extends Component {
             required
           />
 
-          <input
+          <CustomInput
             type="password"
             name="password"
             placeholder="Password"
@@ -107,7 +120,7 @@ export default class Registration extends Component {
             required
           />
 
-          <input
+          <CustomInput
             type="password"
             name="password_confirmation"
             placeholder="Password confirmation"
@@ -116,7 +129,7 @@ export default class Registration extends Component {
             required
           />
 
-          <button type="submit">Register</button>
+          <CustomButton type="submit">Register</CustomButton>
         </form>
       </div>
     );
