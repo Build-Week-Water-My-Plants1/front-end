@@ -21,7 +21,7 @@ function LizPlantList() {
 
     return(
         <div>
-            <p>liz plant list</p>
+            <p>Your Plants</p>
             <ModalExample buttonLabel='Add a Plant' />
             <CardColumns>
                 {plants.map(plant => (
