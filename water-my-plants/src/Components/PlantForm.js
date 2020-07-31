@@ -3,8 +3,10 @@ import * as yup from 'yup';
 import { Button, ModalFooter } from 'reactstrap';
 import data from './data';
 import axios from 'axios';
+import { addPlant, editPlant } from "../actions/actions";
+import { connect } from "react-redux";
 
-function PlantForm(propsFromModal) {
+function PlantForm(propsFromModal, {addPlant, editPlant}) {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     const defaultState = {
@@ -16,17 +18,18 @@ function PlantForm(propsFromModal) {
     }
     
     const [plant, setPlant] = useState(defaultState);
-    useEffect(() => {if(propsFromModal.plantId >= 0) {
-        const id = propsFromModal.plantId;
-        const editState = {
-            plantName: data[id].plantName,
-            plantSpecies: data[id].plantSpecies,
-            weekly: data[id].weekly,
-            intervalNum: data[id].intervalNum,
-            startDate: data[id].startDate,
-        }
-        setPlant(editState);
-    }}, [propsFromModal.plantId])
+    // useEffect(() => {if(propsFromModal.plantId >= 0) {
+    //     const id = propsFromModal.plantId;
+    //     const editState = {
+    //         plantName: data[id].plantName,
+    //         plantSpecies: data[id].plantSpecies,
+    //         weekly: data[id].weekly,
+    //         intervalNum: data[id].intervalNum,
+    //         startDate: data[id].startDate,
+    //     }
+    //     setPlant(editState);
+    // }}, [propsFromModal.plantId])
+
     const [errors, setErrors] = useState(defaultState);
     const [disableButton, setDisableButton] = useState(true);
 
@@ -86,12 +89,14 @@ function PlantForm(propsFromModal) {
 
     const handleSubmit = event => {
         event.preventDefault();
-        setPlant({
-            ...plant,
-            [event.target.name]: event.target.value
-        });
-
-        setPlant(defaultState);
+        if(propsFromModal.plantId) {
+            editPlant({
+                ...plant,
+                id: propsFromModal.plantId
+            });
+        } else {
+            addPlant(plant);
+        }
     }
 
     return(
@@ -139,12 +144,8 @@ function PlantForm(propsFromModal) {
     )
 }
 
-export default PlantForm;
+const mapStateToProps = state => {
+    return {};
+}
 
-// const mapStateToProps = state => {
-//     return {
-//         plants: state.plantReducer.plants
-//     }
-// }
-
-// export default connect(mapStateToProps, {getPlants})(PlantList);
+export default connect(mapStateToProps, {addPlant, editPlant})(PlantForm);

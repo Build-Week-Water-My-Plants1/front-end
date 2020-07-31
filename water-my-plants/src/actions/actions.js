@@ -30,7 +30,7 @@ export const getPlants = () => dispatch => {
         
 };
 
-export const addPlant = (plant)=>(dispatch)=>{
+export const addPlant = (plant) => (dispatch) =>{
     axiosWithAuth()
         .post('/plantlist/', plant)
         .then(res => {
