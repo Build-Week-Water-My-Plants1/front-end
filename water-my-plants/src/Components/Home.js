@@ -9,22 +9,25 @@ import Nav from './Nav';
 
 
 const H1 = styled.h1`
-  font-size: 2em;
+  font-size: 3em;
 padding: 10px;
  font-family: 'Inter', sans-serif;
  font-weight: bold;
-color: #2b3438;
+color: #00bdc8;
+font-family: 'Noto Sans', sans-serif;
 `
 
 const H2 = styled.h2`
   color: #2b3438;
    font-family: 'Inter', sans-serif;
+   font-family: 'Noto Sans', sans-serif;
 
 `
 
 const H4 = styled.h4`
   color: #2b3438;
    font-family: 'Inter', sans-serif;
+   font-family: 'Noto Sans', sans-serif;
 
 `
 const Button = styled.button`
@@ -39,11 +42,9 @@ border: 1px solid #00bdc8;
 
 
 const Container= styled.div`
-    margin-top: 20px;
     background-image: url(${img});
     background-size: 100% auto;
     padding-bottom: 300px;
-    padding-top: 50px;
     margin: 0 auto;
     `
 

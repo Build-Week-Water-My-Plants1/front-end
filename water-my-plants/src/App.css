@@ -1,3 +1,7 @@
+a{
+  color: #d6ebec;
+
+}
 .App {
   text-align: center;
 }
@@ -22,9 +26,9 @@
   font-size: calc(10px + 2vmin);
 }
 
-.App-link {
+/* .App-link {
   color: rgb(112, 76, 182);
-}
+} */
 
 @keyframes App-logo-float {
   0% {
@@ -37,3 +41,5 @@
     transform: translateY(0px)
   }
 }
+
+

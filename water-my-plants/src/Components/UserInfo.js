@@ -16,11 +16,9 @@ margin: 10px;
 `;
 
 const Container= styled.div`
-    margin-top: 20px;
     background-image: url(${img});
     background-size: 100% auto;
     padding-bottom: 300px;
-    padding-top: 50px;
     margin: 0 auto;
     `
     
