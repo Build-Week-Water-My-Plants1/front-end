@@ -2,25 +2,36 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-const CustomInput = styled.input`
+export const CustomInput = styled.input`
   
   display: flex;
   justify-content: center;
   outline: none;
   margin: 0;
-  border: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
+  border: 1px solid black;
   box-shadow: none;
   width: 100%;
   font-size: 14px;
   font-family: "Inter", sans-serif;
+  margin: 10px;
 
 `
 
-const CustomButton = styled.button`
+export const CustomDiv = styled.div`
     
-    line-height: 40px;
+  line-height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  
+
+  `
+
+export const CustomButton = styled.button`
+    
+  line-height: 40px;
   display: inline-block;
   padding: 0 25px;
   cursor: pointer;
@@ -87,7 +98,7 @@ export default class Login extends Component {
 
     render() {
       return (
-        <div>
+        <CustomDiv>
           <form onSubmit={this.handleSubmit}>
             <CustomInput
               type="text"
@@ -109,7 +120,7 @@ export default class Login extends Component {
 
           <CustomButton type="submit">Login</CustomButton>
         </form>
-      </div>
+      </CustomDiv>
     );
   }
 }

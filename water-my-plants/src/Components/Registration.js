@@ -1,43 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import {CustomButton, CustomInput, CustomDiv} from "./Login";
 
-const CustomButton = styled.button`
-    
-    line-height: 40px;
-  display: inline-block;
-  padding: 0 25px;
-  cursor: pointer;
-  color: #00BDC8;
-  font-family: "Inter", sans-serif;
-  -webkit-transition: all 0.4s ease;
-  -o-transition: all 0.4s ease;
-  -moz-transition: all 0.4s ease;
-  transition: all 0.4s ease;
-  font-size: 14px;
-  font-weight: 700;
-
-  `
-
-
-
-
-  const CustomInput = styled.input`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
-  border-bottom: 1px solid #e5e5e5;
-  outline: none;
-  margin: 0;
-  border: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  width: 100%;
-  font-size: 14px;
-  font-family: "Inter", sans-serif;
-
-`
 
 
 export default class Registration extends Component {
@@ -91,7 +56,7 @@ export default class Registration extends Component {
 
   render() {
     return (
-      <div>
+      <CustomDiv>
         <form onSubmit={this.handleSubmit}>
           <CustomInput
             type="email"
@@ -105,7 +70,7 @@ export default class Registration extends Component {
 <CustomInput
             type="phonenumber"
             name="phonenumber"
-            placeholder="Phonenumber"
+            placeholder="Phone number"
             value={this.state.phonenumber}
             onChange={this.handleChange}
             required
@@ -131,7 +96,7 @@ export default class Registration extends Component {
 
           <CustomButton type="submit">Register</CustomButton>
         </form>
-      </div>
+      </CustomDiv>
     );
   }
 }
